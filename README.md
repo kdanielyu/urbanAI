@@ -10,7 +10,7 @@ Build the framework:
       HTML/CSS styling of webpage
 -	Building frame for ThreeJS app.
 
-ThreeJS:
+ThreeJS: <br>
 2.	**Russell –**
       Scene setup - framework for basic structure of scene
 - Camera setup
