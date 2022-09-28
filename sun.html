@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrbanAI - Sun Slider</title>
+</head>
+
+<body>
+    <svg width="1000" height="500" style="border:solid 1px black">
+        <circle id="sun" cx="0" cy="500" r="50" fill="orange" />
+    </svg>
+    <br>
+    <input class="slider" type="range" id="rangeX" min="0" max="1000" value="0" style="width:1000px" oninput="move(); this.nextElementSibling.value = this.value">
+    <output>0</output>
+    <script type="text/javascript">
+        function move(event){
+            let slider = document.querySelector("#rangeX");
+            let circle = document.querySelector("#sun");
+            circle.setAttribute("cx", slider.value);
+            if (slider.value <= slider.max/2) circle.setAttribute("cy", slider.max/2 - slider.value);
+            else circle.setAttribute("cy", slider.value - slider.max/2);
+        }
+    </script>
+</body>
+
+</html>
