@@ -6,7 +6,6 @@ function listFiles() {
     });
 
     var s3 = new AWS.S3();
-    //var s3Bucket = new aws.S3( { params: {Bucket: 'urbanai'} } );
 
     var params = { Bucket: '', Key: 'test.txt' };
 
