@@ -21,3 +21,30 @@ h1{
     margin-left: 10vw;
     background: darkgoldenrod;
 }
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    height: 40%;
+    width: 28%;
+    margin: 2em;
+    display: inline-block;
+}
+
+.image {
+    display: block;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1em;
+    width: 80%;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container {
+    padding: 2px 16px;
+}
+
