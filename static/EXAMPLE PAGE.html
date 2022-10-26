@@ -23,6 +23,35 @@
 <div class="titleBlock">
     <h1>UNSW VIP - UrbanAI</h1>
     Urban Air Temperature Analysis Tool
+
+    <button id="myBtn">Learn More</button>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Project Info</p>
+        </div>
+    
+    </div>
+
+    <script>
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("myBtn");
+
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
 </div>
 <div class="canvas">
     <div id="frame"></div>
@@ -81,68 +110,97 @@
 
 <body>
 
-    <button onclick="myFunction()">Member Profiles</button>
+    <button type="button" class="collapsible">Member Profiles</button>
+    <div class="content">
 
-    <div id="button">
+        <div class="row">
+            <div class="column">
+                <div class="card">
+                    <img src="cat.jpg" alt="Avatar" class ="image">
+                    <div class="container">
+                        <h4><b>Joey Xu</b></h4>
+                        <p>A second year student studying civil engineering 
+                            and computer science at UNSW. </p>
+                        <a href="https://www.linkedin.com/in/joey-xu-27a384247">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
 
-        <div class="card">
-            <img src="cat.jpg" alt="Avatar" class ="image">
-            <div class="container">
-                <h4><b>Name</b></h4>
-                <p>Role</p>
+            <div class="column">
+                <div class="card">
+                    <img src="placeholder.png" alt="Avatar" class="image">
+                    <div class="container">
+                        <h4><b>Name</b></h4>
+                        <p>Short Description</p>
+                        <p>Contact or Links</p>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="card">
-            <img src="cat.jpg" alt="Avatar" class ="image">
-            <div class="container">
-                <h4><b>Name</b></h4>
-                <p>Role</p>
+        <div class="row">
+            <div class="column">
+                <div class="card">
+                    <img src="placeholder.png" alt="Avatar" class="image">
+                    <div class="container">
+                        <h4><b>Name</b></h4>
+                        <p>Short Description</p>
+                        <p>Contact or Links</p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="column">
+                <div class="card">
+                    <img src="placeholder.png" alt="Avatar" class="image">
+                    <div class="container">
+                        <h4><b>Name</b></h4>
+                        <p>Short Description</p>
+                        <p>Contact or Links</p>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="card">
-            <img src="cat.jpg" alt="Avatar" class ="image">
-            <div class="container">
-                <h4><b>Name</b></h4>
-                <p>Role</p>
+        <div class="row">
+            <div class="column">
+                <div class="card">
+                    <img src="placeholder.png" alt="Avatar" class="image">
+                    <div class="container">
+                        <h4><b>Name</b></h4>
+                        <p>Short Description</p>
+                        <p>Contact or Links</p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="column">
+                <div class="card">
+                    <img src="placeholder.png" alt="Avatar" class="image">
+                    <div class="container">
+                        <h4><b>Name</b></h4>
+                        <p>Short Description</p>
+                        <p>Contact or Links</p>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="card">
-            <img src="cat.jpg" alt="Avatar" class ="image">
-            <div class="container">
-                <h4><b>Name</b></h4>
-                <p>Role</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="cat.jpg" alt="Avatar" class ="image">
-            <div class="container">
-                <h4><b>Name</b></h4>
-                <p>Role</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="cat.jpg" alt="Avatar" class ="image">
-            <div class="container">
-                <h4><b>Name</b></h4>
-                <p>Info</p>
-            </div>
-        </div>
-
     </div>
 
     <script>
-        function myFunction() {
-            var x = document.getElementById("button");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
         }
     </script>
 
