@@ -4,7 +4,7 @@ import boto3
 from flask import Flask, Response, send_file
 
 
-app = Flask(__name__, static_url_path='/static')
+app = Flask(__name__, static_url_path='/')
 
 @app.route('/', methods=['GET'])
 def index():
