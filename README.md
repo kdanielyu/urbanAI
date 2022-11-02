@@ -1,5 +1,30 @@
 # urbanAI 2022
 
+# Usage
+
+## Server Setup
+Note: 
+- Make sure you have Python3 installed on your machine. 
+- The following instructions are for MacOS and Linux users. I'm not sure how it works on Windows.
+
+1. Make sure that you have all necessary requirements for Python3. To install any missing requirements, open a terminal and run `pip3 install -r requirements.txt`
+
+2. Run `python3 server.py`
+
+3. Go to `http://127.0.0.1:3000/index.html`
+
+4. When you are finished, press `Ctrl+C` on the terminal to stop the server.
+
+
+# Notes
+
+---
+
+05/10/2022 -
+Merged with 'load-geometry' branch.
+
+---
+
 W2 21/09/2022:
 **The WebGL frame**
 
