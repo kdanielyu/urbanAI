@@ -46,6 +46,15 @@
         renderer.setSize( width, height );
         container.appendChild( renderer.domElement )
 
+        // yellow point light
+        var light = new THREE.PointLight( 0xFFE87C, 2, 0, 2); // color, intensity, distance, decay
+        light.position.set(0,20,20);
+        //light.castShadow = true;
+        scene.add(light);
+        // link point light to a shape
+        var pointLightHelper = new THREE.PointLightHelper( light, 1 ); // light, size
+        scene.add( pointLightHelper );
+
         // Geometry
         const loader = new GLTFLoader();
         loader.load('models/scene/scene.gltf', function (gltf) {
