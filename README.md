@@ -9,7 +9,7 @@ Note:
 
 1. Make sure that you have all necessary requirements for Python3. To install any missing requirements, open a terminal and run `pip3 install -r requirements.txt`
 
-2. Run `python3 server.py`
+2. Run `python3 application.py`
 
 3. Go to `http://127.0.0.1:3000/index.html`
 
