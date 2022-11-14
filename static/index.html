@@ -4,12 +4,13 @@
     <meta charset="utf-8">
     <title>UNSW VIP Project - Urban Air Temperature Analysis Tool</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="/unsw-icon.png">
 </head>
 <body>
 <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1223.0.js"></script>
-<script src="/static/loadS3.js"></script>
+<script src="/loadS3.js"></script>
 <script>listFiles();</script>
-<script src="/static/js/three.js"></script>
+<script src="/js/three.js"></script>
 <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
 <script type="importmap">
     {
@@ -56,23 +57,38 @@
 <div class="canvas">
     <div id="frame"></div>
     <script type="module">
+        // Imports
         import * as THREE from 'three';
         import { GLTFLoader } from 'https://unpkg.com/three@0.138.3/examples/jsm/loaders/GLTFLoader.js';
         import { OrbitControls } from 'https://unpkg.com/three@0.138.3/examples/jsm/controls/OrbitControls.js';
+        import { DragControls } from 'https://unpkg.com/three/examples/jsm/controls/DragControls.js';
+        
         // Getting dimensions of div ID "frame"
         let box = document.querySelector('.canvas');
         let width = box.offsetWidth;
         let height = box.offsetHeight;
         const container = document.getElementById('frame');
+        
         // Scene setup
         const scene = new THREE.Scene();
-        // const camera = new THREE.PerspectiveCamera( 60, width / height, 1, 10000 );
         const camera = new THREE.OrthographicCamera( width / - 70, width / 70, height / 70, height / - 80, -200, 200 );
+        
         // Renderer setup and appending to 'frame'
         const renderer = new THREE.WebGLRenderer( { antialias: true } );
         renderer.setPixelRatio ( window.devicePixelRatio );
         renderer.setSize( width, height );
         container.appendChild( renderer.domElement )
+
+        // Yellow point light and "sun" sphere setup
+        var light = new THREE.PointLight( 0xFFE87C, 3, 0, 2); // color, intensity, distance, decay
+        light.position.set(0,4.5,0);
+        let geometry = new THREE.SphereGeometry( 1, 64, 32 );
+        let material = new THREE.MeshBasicMaterial( { color: 0xF68656 } );
+        material.color.multiplyScalar( 1.5 );
+        let sun = new THREE.Mesh( geometry, material );
+        sun.position.set(light.position.x, light.position.y, light.position.z);
+        light.add( sun );
+        scene.add(light);
 
         // Geometry
         const loader = new GLTFLoader();
@@ -85,20 +101,34 @@
         // Scene
         scene.background = new THREE.Color(255, 255, 255)
         // Camera
-        // camera.position.z = 10;
         camera.position.set( 1, 1, 3 );
-        // Control
+        // Camera control
         const controls = new OrbitControls(camera, renderer.domElement);
-        controls.update();
+
+        // Drag and drop controls for sun object
+        const dragControls = new DragControls([sun], camera, renderer.domElement);
+        // Change sun color when dragging and disable camera movement
+        dragControls.addEventListener('dragstart', function (event) {
+            event.object.material.color.set(0xf21505);
+            controls.enabled = false;
+        });
+        // Return sun to normal color and enable camera movement again
+        dragControls.addEventListener('dragend', function (event) {
+            event.object.material.color.set(0xF68656);
+            material.color.multiplyScalar( 1.5 );
+            controls.enabled = true;
+        });
+        dragControls.activate();
 
         function animate() {
             requestAnimationFrame( animate );
-            controls.update();
+            // Make the light follow the sun object's position
+            light.position.x = sun.position.x;
+            light.position.y = sun.position.y;
+            light.position.z = sun.position.z;
             renderer.render( scene, camera );
         }
         animate();
-
-
     </script>
 </div>
 </body>
